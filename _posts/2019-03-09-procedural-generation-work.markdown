@@ -20,4 +20,4 @@ categories: procedural genenerative
 
 # Point Distribution Algorithms
 + [Point Distributions](https://evelios.github.io/Atum/examples/Point_Distributions/Point_Distributions.html)
-+ [Adaptive Poisson Sampling](https://github.com/Evelios/adaptive-poisson-sampling)
++ [Adaptive Poisson Sampling](https://evelios.github.io/adaptive-poisson-sampling/example.html)
