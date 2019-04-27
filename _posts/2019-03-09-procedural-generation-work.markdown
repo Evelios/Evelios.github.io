@@ -1,5 +1,4 @@
 ---
-layout: post
 title:  "Procedural Generation Work"
 date:   2019-03-09 08:56:39 -0500
 categories: procedural genenerative
