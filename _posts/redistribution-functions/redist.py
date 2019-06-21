@@ -1,3 +1,6 @@
+'''
+A list of useful redistribution functions for use in procedural generation
+'''
 import math
 
 def exponential(x, exp=1, increase=True):
@@ -8,30 +11,28 @@ def exponential(x, exp=1, increase=True):
     exponential shaped.
     '''
     if increase:
-        nom   = 1 - math.exp(-x * exp)
+        nom = 1 - math.exp(-x * exp)
         denom = 1 - math.exp(-exp)
     else:
-        nom   = 1 - math.exp(-x * exp)
+        nom = 1 - math.exp(-x * exp)
         denom = 1 - math.exp(-exp)
 
     return nom/denom
 
-def power(x, exp=2, inc=True, skewDown=True):
+def power(x, exp=2, inc=True, skew_down=True):
     '''
     Power redistrubution function. x^exp
     This either increases or decreases the input values by a particular
     ammount. This can either skew the distribution towards one or zero as well.
     '''
     if inc:
-        if skewDown:
+        if skew_down:
             return math.pow(x, 1 / exp)
-        else:
-            return 1 - math.pow(1 - x, exp)
-    else:
-        if skewDown:
-            return math.pow(x, exp)
-        else:
-            return 1 - math.pow(1 - x, 1 / exp)
+        return 1 - math.pow(1 - x, exp)
+
+    if skew_down:
+        return math.pow(x, exp)
+    return 1 - math.pow(1 - x, 1 / exp)
 
 def step(x, bins):
     ''' Return the values of x in descritized bins '''
