@@ -8,6 +8,7 @@ tags: generative noise
 * Problem Statement
   + Scaling size
   + Changing aspect ratio
+  + Changing orientation
   + Continious noise functions
 * Maintaining scaling
 * Handling aspect ratio
@@ -35,6 +36,8 @@ apply if you want to program with some scale independents and unit agnostic
 (feet, meters, or some abstract game unit). I will cover many of the use cases
 of trying to control the scalability of noise and randomness so that you can
 implement these practices when you go to create your generative systems.
+
+(px, in, and cm)
 
 **Possibly insert a reference image here**
 
@@ -77,21 +80,66 @@ turned out the best from a particular algorithm.
 
 In some languages like python this is as easy as
 
-```cpp
+```python
 random.seed(1)
 ```
 
 Now that we have repeatability between program executions lets try to get
-repeatability between different outptut scales. The most important thing
-here is that we don't use any absolute [magic
+repeatability between different outptut scales. Some artists have used a
+generative grid that has dimenstions of 1x1 or 100x100 to then arbitrarily scale
+that up to the size you are looking for. I don't quite find this approach
+satisfying because it only works well for square works. I'll go into more
+details about this when I talk about aspect ratio. I like to use parameters that
+are relative to the reference frame to avoid this issue. When doing a process
+like this, the most important thing here is that we don't use any absolute
+[magic
 numbers](https://medium.com/@jaredstromberg/magic-numbers-developments-bane-ce1c4f057ab9).
-Magic numbers in generative art and procedural content in genneral are
-fairly unavoidable since it is all about tweaking something within
-a particular context. The problem arises when they are left on their own.
-Instead of saying "give me a flower that is 15x15 pixels" say "give me
-a flower that is 0.1 x 0.1 the height of the page". This lets the program
-be a little more robust to this scaling problem. Within the context of the
-random number generators we can do the same thing. When I'm using random
-numbers I have them generate a number within some range. Just make sure
-that this range is referenced within some relative context instead of
-being an absolute context.
+Magic numbers in generative art and procedural content in genneral are fairly
+unavoidable since it is all about tweaking something within a particular
+context. The problem arises when they are left on their own.  Instead of saying
+"give me a flower that is 15x15 pixels" say "give me a flower that is 0.1 x 0.1
+the height of the page". This lets the program be a little more robust to this
+scaling problem. Within the context of the random number generators we can do
+the same thing. When I'm using random numbers I have them generate a number
+within some range. Just make sure that this range is referenced within some
+relative context instead of being an absolute context.
+
+**Helpful scaling image here**
+
+```python
+center = Vector(width / 2, height / 2)
+radius = min(width, height) / 5  # Give the circle some padding
+draw(Circle(center, radius))
+```
+
+## Changing Aspect Ratio
+
+One of the unfortunate facts of life is that nothing is ever as simple as you
+would like it to be. For me, aspect ratios is one of those. The aspect ratio is
+the relationship between the width and height of the page you are working on. We
+have nailed down how to scale our page up and down without affecting our print.
+This has been under the assumption that the aspect ratio of the page is not
+changing. Something that is quite an annoyance for me is that imperial standards
+are still alive and well here in America. This means that depending on the
+supplier or the print shop, differing aspect ratios are something that need to
+be addressed if you want to create robust algorithms.
+
+If you are interested in checking out all the [common paper
+sizes](https://en.wikipedia.org/wiki/Paper_size) you are free to. The list is
+long and I can save you some trouble by saying, many of the aspect ratios are
+not preserved as the paper sizes increase. To avoid this you could make sure
+that you always use the [ISO paper
+standards](https://en.wikipedia.org/wiki/ISO_216) like A4 (almost letter size)
+and A3 paper sizes. This was a wonderful standard that was based around the
+square root of two to maintain aspect ratios.  Unfortunately, this dream world
+is not always acceivable. Depending on the type of paper you are trying to buy
+as well, they will cut the paper to different to different standards. There is
+also another wrench that I can throw at you that you might run into when
+creating generative art. What is the orientation you are printing with? Often I
+start writing an algorithm with an orientation that is chosen arbitrarily, but
+through development I may find that a different orientation will work better for
+a piece. Even if you are using the ISO standards, if you use portrait (aspect
+ratio 1:1.141) and then change it to landscape, your aspect ratio will now be
+swapped to 1.141:1.
+
+## Wrangling Continious Noise
