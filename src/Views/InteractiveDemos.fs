@@ -1,31 +1,30 @@
 module App.Views.InteractiveDemos
 
-open App
 open Feliz
 open Feliz.Bulma
+
+open App
 
 
 let private card (demo: InteractiveDemo) : ReactElement =
     let image =
         Bulma.cardImage [
-            Bulma.cardImage [
-                Bulma.image.isSquare
-                prop.children [
-                    Html.img [
-                        prop.alt demo.Description
-                        prop.src (Image.interactive demo.Image)
+            Bulma.image.isSquare
+            prop.children [
+                Html.img [
+                    prop.alt demo.Description
+                    prop.src (Image.interactive demo.Image)
+                ]
+                Html.img [
+                    prop.className "interactive-background"
+                    prop.style [
+                        style.display.inlineBlock
+                        style.position.absolute
+                        style.top 0
+                        style.left 0
                     ]
-                    Html.img [
-                        prop.className "interactive-background"
-                        prop.style [
-                            style.display.inlineBlock
-                            style.position.absolute
-                            style.top 0
-                            style.left 0
-                        ]
-                        prop.alt demo.Description
-                        prop.src (Image.interactive demo.HoverImage)
-                    ]
+                    prop.alt demo.Description
+                    prop.src (Image.interactive demo.HoverImage)
                 ]
             ]
         ]
@@ -59,7 +58,7 @@ let private card (demo: InteractiveDemo) : ReactElement =
     ]
 
 let view: ReactElement =
-    let cards =
+    let interactiveWorks =
         List.map card WebData.interactiveWorks
 
     Bulma.tile [
@@ -68,5 +67,5 @@ let view: ReactElement =
             style.display.flex
             style.flexWrap.wrap
         ]
-        prop.children cards
+        prop.children interactiveWorks
     ]

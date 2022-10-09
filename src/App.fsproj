@@ -8,6 +8,7 @@
     <Compile Include="Image.fs" />
     <Compile Include="Views\InteractiveDemos.fs" />
     <Compile Include="Views\Menu.fs" />
+    <Compile Include="Views\Gallery.fs" />
     <Compile Include="App.fs" />
   </ItemGroup>
   <ItemGroup>

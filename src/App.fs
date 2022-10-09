@@ -20,22 +20,25 @@ let update (msg: Msg) (state: State) : State =
 
     | Decrement -> { state with Count = state.Count - 1 }
 
-let bodyView: ReactElement =
+
+let bodySection (name: string) (content: ReactElement) : ReactElement =
     let title =
         Bulma.title [
             title.is1
-            prop.text "Interactive Demos"
+            prop.text name
             text.hasTextCentered
         ]
 
-    let cards = InteractiveDemos.view
+    Bulma.section [ title; content ]
 
-    Bulma.container [
-        Bulma.heroHead title
-        Bulma.heroBody cards
-    ]
+let view (state: State) (dispatch: Msg -> unit) : ReactElement =
+    let body =
+        Bulma.container [
+            bodySection "Interactive Demos" InteractiveDemos.view
+            bodySection "Gallery Images" Gallery.view
+        ]
 
-let view (state: State) (dispatch: Msg -> unit) : ReactElement = Html.div [ Menu.view; bodyView ]
+    Html.div [ Menu.view; body ]
 
 
 

@@ -4,9 +4,10 @@ type Image = string
 type Url = string
 
 type InteractiveDemo =
-    { Title:string
+    { Title: string
       Description: string
       Image: Image
       HoverImage: Image
-      Link: Url
-    }
+      Link: Url }
+
+type GalleryImage = { Title: string; Source: Url }
