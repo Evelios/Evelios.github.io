@@ -1,0 +1,9 @@
+.interactive-background {
+   opacity: 0;
+   transition: opacity 0.5s ease-out;
+}
+
+.interactive-background:hover {
+   opacity: 100%;
+   transition: opacity 0.25s ease-in;
+}

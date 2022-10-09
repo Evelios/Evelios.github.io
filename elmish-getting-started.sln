@@ -13,12 +13,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionFiles", "SolutionFi
 		package-lock.json = package-lock.json
 		README.md = README.md
 		webpack.config.js = webpack.config.js
+		netlify.toml = netlify.toml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dist", "dist", "{9399416A-20C5-4F41-B0A7-2D8F73B93334}"
 	ProjectSection(SolutionItems) = preProject
 		dist\fable.ico = dist\fable.ico
 		dist\index.html = dist\index.html
+		dist\main.css = dist\main.css
 	EndProjectSection
 EndProject
 Global
