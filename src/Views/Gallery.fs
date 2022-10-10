@@ -15,7 +15,7 @@ let galleryImage (gallery: GalleryImage) =
                 Bulma.cardImage [
                     Bulma.image [
                         Html.img [
-                            prop.src (Image.gallery gallery.Source)
+                            prop.src (Route.Image.gallery gallery.Source)
                         ]
                     ]
                 ]

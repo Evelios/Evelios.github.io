@@ -32,13 +32,16 @@ let bodySection (name: string) (content: ReactElement) : ReactElement =
     Bulma.section [ title; content ]
 
 let view (state: State) (dispatch: Msg -> unit) : ReactElement =
+    let divider = Bulma.navbarDivider []
+    
     let body =
-        Bulma.container [
+        Html.div [
             bodySection "Interactive Demos" InteractiveDemos.view
+            divider
             bodySection "Gallery Images" Gallery.view
         ]
 
-    Html.div [ Menu.view; body ]
+    Bulma.container [ Menu.view; body ]
 
 
 

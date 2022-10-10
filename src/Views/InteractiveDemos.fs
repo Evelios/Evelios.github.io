@@ -13,7 +13,7 @@ let private card (demo: InteractiveDemo) : ReactElement =
             prop.children [
                 Html.img [
                     prop.alt demo.Description
-                    prop.src (Image.interactive demo.Image)
+                    prop.src (Route.Image.interactive demo.Image)
                 ]
                 Html.img [
                     prop.className "interactive-background"
@@ -24,7 +24,7 @@ let private card (demo: InteractiveDemo) : ReactElement =
                         style.left 0
                     ]
                     prop.alt demo.Description
-                    prop.src (Image.interactive demo.HoverImage)
+                    prop.src (Route.Image.interactive demo.HoverImage)
                 ]
             ]
         ]
@@ -48,6 +48,8 @@ let private card (demo: InteractiveDemo) : ReactElement =
         prop.children [
             Html.a [
                 prop.href demo.Link
+                prop.target "_blank"
+                prop.rel "noopener noreferrer"
                 prop.children [
                     Bulma.card [
                         prop.children [ image; content ]

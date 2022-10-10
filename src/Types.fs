@@ -11,3 +11,5 @@ type InteractiveDemo =
       Link: Url }
 
 type GalleryImage = { Title: string; Source: Url }
+
+type Project = { Title: string; Source: Url }
