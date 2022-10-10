@@ -16,55 +16,61 @@ let private title =
         ]
     ]
 
-let view: ReactElement =
-    let navbarLink (project: Project) =
-        Bulma.navbarItem.a [
-            prop.text project.Title
-            prop.href project.Source
-            prop.target "_blank"
-            prop.rel "noopener noreferrer"
-        ]
+let private navbarLink (project: Project) =
+    Bulma.navbarItem.a [
+        prop.text project.Title
+        prop.href project.Source
+        prop.target "_blank"
+        prop.rel "noopener noreferrer"
+    ]
 
+let private projects =
     let projects =
-        let projects =
-            List.map navbarLink WebData.projects
+        List.map navbarLink WebData.projects
 
-        Bulma.navbarItem.div [
-            navbarItem.hasDropdown
-            navbarItem.isHoverable
-            prop.children [
-                Bulma.navbarLink.a [
-                    prop.text "Projects"
-                ]
-                Bulma.navbarDropdown.div projects
+    Bulma.navbarItem.div [
+        navbarItem.hasDropdown
+        navbarItem.isHoverable
+        prop.children [
+            Bulma.navbarLink.a [
+                prop.text "Projects"
             ]
+            Bulma.navbarDropdown.div projects
         ]
-        
-    let packages =
-        let projects =
-            List.map navbarLink WebData.packages
+    ]
 
-        Bulma.navbarItem.div [
-            navbarItem.hasDropdown
-            navbarItem.isHoverable
-            prop.children [
-                Bulma.navbarLink.a [
-                    prop.text "Packages"
-                ]
-                Bulma.navbarDropdown.div projects
+let private packages =
+    let projects =
+        List.map navbarLink WebData.packages
+
+    Bulma.navbarItem.div [
+        navbarItem.hasDropdown
+        navbarItem.isHoverable
+        prop.children [
+            Bulma.navbarLink.a [
+                prop.text "Packages"
             ]
+            Bulma.navbarDropdown.div projects
         ]
+    ]
 
-    let github =
-        Bulma.navbarItem.a [
-            prop.children [
-                Icon.github
-            ]
-            prop.href WebData.Links.github
-            prop.target "_blank"
-            prop.rel "noopener noreferrer"
-        ]
+let private github =
+    Bulma.navbarItem.a [
+        prop.children [ Icon.github ]
+        prop.href WebData.Links.github
+        prop.target "_blank"
+        prop.rel "noopener noreferrer"
+    ]
 
+let private about =
+    Bulma.navbarItem.a [
+        prop.text "About"
+        prop.href WebData.Links.about
+        prop.target "_blank"
+        prop.rel "noopener noreferrer"
+    ]
+
+let view: ReactElement =
     Bulma.navbarMenu [
         Bulma.color.isPrimary
         prop.children [
@@ -73,6 +79,6 @@ let view: ReactElement =
                 projects
                 packages
             ]
-            Bulma.navbarEnd.div [ github ]
+            Bulma.navbarEnd.div [ github; about ]
         ]
     ]

@@ -1,5 +1,6 @@
 module App
 
+open System
 open Elmish
 open Elmish.React
 open Feliz
@@ -36,6 +37,21 @@ let bodySection (name: string) (content: ReactElement) : ReactElement =
 
     Bulma.section [ title; content ]
 
+let footer: ReactElement =
+    let text: string =
+        "© "
+        + string DateTime.Now.Year
+        + " Thomas G. Waters, All Rights Reserved"
+
+    Bulma.footer [
+        Bulma.content [
+            Bulma.text.p [
+                Bulma.text.hasTextCentered
+                prop.text text
+            ]
+        ]
+    ]
+
 let view (state: State) (dispatch: Msg -> unit) : ReactElement =
     let divider = Bulma.navbarDivider []
 
@@ -51,12 +67,11 @@ let view (state: State) (dispatch: Msg -> unit) : ReactElement =
         |> Option.map (fun img -> Gallery.modal img (fun _ -> dispatch CloseGalleryImage))
         |> Option.toList
 
-    Bulma.container [
-        Menu.view
-        body
+    Html.div [
         yield! modal
+        Bulma.container [ Menu.view; body ]
+        footer
     ]
-
 
 
 Program.mkSimple init update view

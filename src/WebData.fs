@@ -2,6 +2,8 @@ module App.WebData
 
 module Links =
     let github = "https://github.com/evelios"
+    
+    let about = "https://generatorvt.com/tommy-waters/"
 
 
 
