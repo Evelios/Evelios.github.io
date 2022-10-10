@@ -19,24 +19,35 @@ let packages =
 /// Images that are available in the gallery.
 let galleryImages: GalleryImage list =
     [ { Title = "Waterfall"
-        Source = "waterfall.jpg" }
+        Source = "waterfall.jpg"
+        Description = "Pen-plotter print with ink on A4 paper" }
       { Title = "Twist"
-        Source = "twist.jpg" }
+        Source = "twist.jpg"
+        Description = "Pen-plotter print with ink on A4 paper" }
       { Title = "Birch"
-        Source = "birch.jpg" }
-      { Title = "Kelp"; Source = "kelp.jpg" }
+        Source = "birch.jpg"
+        Description = "Pen-plotter print with ink on A4 paper" }
+      { Title = "Kelp"
+        Source = "kelp.jpg"
+        Description = "Pen-plotter print with ink on A4 paper" }
       { Title = "Fission"
-        Source = "fission.jpg" }
+        Source = "fission.jpg"
+        Description = "Pen-plotter print with ink on A4 paper" }
       { Title = "Fire"
-        Source = "fire-tendrils.jpg" }
+        Source = "fire-tendrils.jpg"
+        Description = "Pen-plotter print with ink on A4 paper" }
       { Title = "Shrimp"
-        Source = "shrimp.jpg" }
+        Source = "shrimp.jpg"
+        Description = "Pen-plotter print with ink on A4 paper" }
       { Title = "Curtain"
-        Source = "curtains.jpg" }
+        Source = "curtains.jpg"
+        Description = "Pen-plotter print with ink on A4 paper" }
       { Title = "Venetian"
-        Source = "shades.jpg" } 
+        Source = "shades.jpg"
+        Description = "Pen-plotter print with ink on A4 paper" }
       { Title = "Glyphs"
-        Source = "glyphs.jpg" } ]
+        Source = "glyphs.jpg"
+        Description = "Pen-plotter print with ink on A4 paper" } ]
 
 
 /// All the interactive works that available on the website.
