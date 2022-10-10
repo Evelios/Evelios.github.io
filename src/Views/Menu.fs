@@ -1,29 +1,84 @@
 module App.Views.Menu
 
-open Fable.React
 open Feliz
 open Feliz.Bulma
 
-let view: ReactElement =
-    Bulma.navbarMenu [
-        Bulma.navbarStart.div [
-            Bulma.navbarItem.div [
-                Bulma.title [
-                    title.is6
-                    prop.text "Thomas G. Waters"
-                ]
-            ]
-            Bulma.navbarItem.a [ prop.text "Home" ]
-            Bulma.navbarItem.a [
-                prop.text "Projects"
-            ]
-            Bulma.navbarItem.a [
-                prop.text "Gallery"
+open App
+
+let private title =
+    Bulma.navbarItem.a [
+        prop.href Route.home
+        prop.children [
+            Bulma.title [
+                title.is6
+                prop.text "Thomas G. Waters"
             ]
         ]
-        Bulma.navbarEnd.div [
-            Bulma.navbarItem.a [
-                prop.text "Github"
+    ]
+
+let private navbarLink (project: Project) =
+    Bulma.navbarItem.a [
+        prop.text project.Title
+        prop.href project.Source
+        prop.target "_blank"
+        prop.rel "noopener noreferrer"
+    ]
+
+let private projects =
+    let projects =
+        List.map navbarLink WebData.projects
+
+    Bulma.navbarItem.div [
+        navbarItem.hasDropdown
+        navbarItem.isHoverable
+        prop.children [
+            Bulma.navbarLink.a [
+                prop.text "Projects"
             ]
+            Bulma.navbarDropdown.div projects
+        ]
+    ]
+
+let private packages =
+    let projects =
+        List.map navbarLink WebData.packages
+
+    Bulma.navbarItem.div [
+        navbarItem.hasDropdown
+        navbarItem.isHoverable
+        prop.children [
+            Bulma.navbarLink.a [
+                prop.text "Packages"
+            ]
+            Bulma.navbarDropdown.div projects
+        ]
+    ]
+
+let private github =
+    Bulma.navbarItem.a [
+        prop.children [ Icon.github ]
+        prop.href WebData.Links.github
+        prop.target "_blank"
+        prop.rel "noopener noreferrer"
+    ]
+
+let private about =
+    Bulma.navbarItem.a [
+        prop.text "About"
+        prop.href WebData.Links.about
+        prop.target "_blank"
+        prop.rel "noopener noreferrer"
+    ]
+
+let view: ReactElement =
+    Bulma.navbarMenu [
+        Bulma.color.isPrimary
+        prop.children [
+            Bulma.navbarStart.div [
+                title
+                projects
+                packages
+            ]
+            Bulma.navbarEnd.div [ github; about ]
         ]
     ]

@@ -1,24 +1,30 @@
 module App
 
+open System
 open Elmish
 open Elmish.React
 open Feliz
 open Feliz.Bulma
+
+open App
 open App.Views
 
-type State = { Count: int }
+type State = { GalleryImage: GalleryImage option }
 
 type Msg =
-    | Increment
-    | Decrement
+    | SelectGalleryImage of GalleryImage
+    | CloseGalleryImage
 
-let init () = { Count = 0 }
+let init () = { GalleryImage = None }
 
 let update (msg: Msg) (state: State) : State =
     match msg with
-    | Increment -> { state with Count = state.Count + 1 }
+    | SelectGalleryImage galleryImage -> { state with GalleryImage = Some galleryImage }
+    | CloseGalleryImage -> { state with GalleryImage = None }
 
-    | Decrement -> { state with Count = state.Count - 1 }
+
+
+// ---- Views ------------------------------------------------------------------
 
 
 let bodySection (name: string) (content: ReactElement) : ReactElement =
@@ -31,15 +37,41 @@ let bodySection (name: string) (content: ReactElement) : ReactElement =
 
     Bulma.section [ title; content ]
 
+let footer: ReactElement =
+    let text: string =
+        "© "
+        + string DateTime.Now.Year
+        + " Thomas G. Waters, All Rights Reserved"
+
+    Bulma.footer [
+        Bulma.content [
+            Bulma.text.p [
+                Bulma.text.hasTextCentered
+                prop.text text
+            ]
+        ]
+    ]
+
 let view (state: State) (dispatch: Msg -> unit) : ReactElement =
+    let divider = Bulma.navbarDivider []
+
     let body =
-        Bulma.container [
+        Html.div [
             bodySection "Interactive Demos" InteractiveDemos.view
-            bodySection "Gallery Images" Gallery.view
+            divider
+            bodySection "Gallery Images" (Gallery.view (SelectGalleryImage >> dispatch))
         ]
 
-    Html.div [ Menu.view; body ]
+    let modal =
+        state.GalleryImage
+        |> Option.map (fun img -> Gallery.modal img (fun _ -> dispatch CloseGalleryImage))
+        |> Option.toList
 
+    Html.div [
+        yield! modal
+        Bulma.container [ Menu.view; body ]
+        footer
+    ]
 
 
 Program.mkSimple init update view

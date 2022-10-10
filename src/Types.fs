@@ -10,4 +10,9 @@ type InteractiveDemo =
       HoverImage: Image
       Link: Url }
 
-type GalleryImage = { Title: string; Source: Url }
+type GalleryImage =
+    { Title: string
+      Description: string
+      Source: Url }
+
+type Project = { Title: string; Source: Url }

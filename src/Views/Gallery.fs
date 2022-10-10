@@ -1,48 +1,77 @@
 module App.Views.Gallery
 
-open Fable.React.Props
 open Feliz
 open Feliz.Bulma
 
 open App
 
-
-let galleryImage (gallery: GalleryImage) =
-    let image =
-        Bulma.box [
-            prop.style [ style.padding 0 ]
-            prop.children [
-                Bulma.cardImage [
-                    Bulma.image [
-                        Html.img [
-                            prop.src (Image.gallery gallery.Source)
-                        ]
+let private galleryImage (onClick: GalleryImage -> unit) (img: GalleryImage) =
+    Bulma.box [
+        prop.onClick (fun _ -> onClick img)
+        prop.className "gallery"
+        prop.style [ style.padding 0 ]
+        prop.children [
+            Bulma.cardImage [
+                Bulma.image [
+                    Html.img [
+                        prop.style [ style.cursor.pointer ]
+                        prop.src (Route.Image.gallery img.Source)
                     ]
                 ]
             ]
         ]
+    ]
 
-    Bulma.tile [
-        tile.isParent
-        tile.is4
-        prop.children [
-            Bulma.tile [
-                tile.isChild
-                prop.children [ image ]
+let private modalImage (img: GalleryImage) =
+    Bulma.card [
+
+        Bulma.cardImage [
+            Bulma.image [
+                Html.img [
+                    prop.src (Route.Image.gallery img.Source)
+                ]
+            ]
+        ]
+        Bulma.cardContent [
+            prop.children [
+                Bulma.cardHeaderTitle.p [
+                    cardHeaderTitle.isCentered
+                    prop.text img.Title
+                ]
+                Bulma.text.p [
+                    text.hasTextCentered
+                    prop.text img.Description
+                ]
             ]
         ]
     ]
 
 
-let view =
-    let galleryImages =
-        List.map galleryImage WebData.galleryImages
+let modal (img: GalleryImage) (onClose: unit -> unit) : ReactElement =
+    let close _ = onClose ()
 
-    Bulma.tile [
-        tile.isAncestor
-        prop.style [
-            style.display.flex
-            style.flexWrap.wrap
+    Bulma.modal [
+        prop.id "modal-sample"
+        modal.isActive
+        prop.children [
+            Bulma.modalBackground [
+                prop.onClick close
+            ]
+            Bulma.modalContent [
+                prop.style [ style.overflow.hidden ]
+                prop.children [ modalImage img ]
+            ]
+            Bulma.modalClose [ prop.onClick close ]
         ]
-        prop.children galleryImages
+    ]
+
+let view (onClick: GalleryImage -> unit) =
+    let galleryChunks =
+        List.splitInto 3 WebData.galleryImages
+
+    let verticalTile galleryImages =
+        Bulma.column (List.map (galleryImage onClick) galleryImages)
+
+    Bulma.columns [
+        prop.children (List.map verticalTile galleryChunks)
     ]

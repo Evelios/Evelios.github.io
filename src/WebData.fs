@@ -1,17 +1,55 @@
 module App.WebData
 
+module Links =
+    let github = "https://github.com/evelios"
+    
+    let about = "https://generatorvt.com/tommy-waters/"
+
+
+
+/// Projects that I have worked on
+let projects =
+    [ { Title = "Pretty Rough Shape"
+        Source = "https://prettyroughshape.com" } ]
+
+let packages =
+    [ { Title = "F# - Math.Units"
+        Source = "https://www.nuget.org/packages/Math.Units" }
+      { Title = "F# - Math.Geometry"
+        Source = "https://www.nuget.org/packages/Math.Geometry" } ]
+
 /// Images that are available in the gallery.
 let galleryImages: GalleryImage list =
-    [ { Title = "Waterfall"; Source = "waterfall.jpg" }
-      { Title = "Twist"; Source = "twist.jpg" }
-      { Title = "Birch"; Source = "birch.jpg" }
-      { Title = "Fire"; Source = "fire-tendrils.jpg" }
-      { Title = "Fission"; Source = "fission.jpg" }
-      { Title = "Glyphs"; Source = "glyphs.jpg" }
-      { Title = "Shrimp"; Source = "shrimp.jpg" }
-      { Title = "Kelp"; Source = "kelp.jpg" }
-      { Title = "Venetian"; Source = "curtains.jpg" }
-      { Title = "Shades"; Source = "shades.jpg" } ]
+    [ { Title = "Waterfall"
+        Source = "waterfall.jpg"
+        Description = "Pen-plotter print with ink on A4 paper" }
+      { Title = "Twist"
+        Source = "twist.jpg"
+        Description = "Pen-plotter print with ink on A4 paper" }
+      { Title = "Birch"
+        Source = "birch.jpg"
+        Description = "Pen-plotter print with ink on A4 paper" }
+      { Title = "Kelp"
+        Source = "kelp.jpg"
+        Description = "Pen-plotter print with ink on A4 paper" }
+      { Title = "Fission"
+        Source = "fission.jpg"
+        Description = "Pen-plotter print with ink on A4 paper" }
+      { Title = "Fire"
+        Source = "fire-tendrils.jpg"
+        Description = "Pen-plotter print with ink on A4 paper" }
+      { Title = "Shrimp"
+        Source = "shrimp.jpg"
+        Description = "Pen-plotter print with ink on A4 paper" }
+      { Title = "Curtain"
+        Source = "curtains.jpg"
+        Description = "Pen-plotter print with ink on A4 paper" }
+      { Title = "Venetian"
+        Source = "shades.jpg"
+        Description = "Pen-plotter print with ink on A4 paper" }
+      { Title = "Glyphs"
+        Source = "glyphs.jpg"
+        Description = "Pen-plotter print with ink on A4 paper" } ]
 
 
 /// All the interactive works that available on the website.
