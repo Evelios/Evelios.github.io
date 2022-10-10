@@ -24,19 +24,19 @@ let galleryImages: GalleryImage list =
         Source = "twist.jpg" }
       { Title = "Birch"
         Source = "birch.jpg" }
-      { Title = "Fire"
-        Source = "fire-tendrils.jpg" }
+      { Title = "Kelp"; Source = "kelp.jpg" }
       { Title = "Fission"
         Source = "fission.jpg" }
-      { Title = "Glyphs"
-        Source = "glyphs.jpg" }
+      { Title = "Fire"
+        Source = "fire-tendrils.jpg" }
       { Title = "Shrimp"
         Source = "shrimp.jpg" }
-      { Title = "Kelp"; Source = "kelp.jpg" }
-      { Title = "Venetian"
+      { Title = "Curtain"
         Source = "curtains.jpg" }
-      { Title = "Shades"
-        Source = "shades.jpg" } ]
+      { Title = "Venetian"
+        Source = "shades.jpg" } 
+      { Title = "Glyphs"
+        Source = "glyphs.jpg" } ]
 
 
 /// All the interactive works that available on the website.
