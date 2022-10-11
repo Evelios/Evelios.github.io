@@ -9,7 +9,10 @@ let private galleryImage (onClick: GalleryImage -> unit) (img: GalleryImage) =
     Bulma.box [
         prop.onClick (fun _ -> onClick img)
         prop.className "gallery"
-        prop.style [ style.padding 0 ]
+        prop.style [
+            style.padding 0
+            style.width.unset
+        ]
         prop.children [
             Bulma.cardImage [
                 Bulma.image [
@@ -24,7 +27,6 @@ let private galleryImage (onClick: GalleryImage -> unit) (img: GalleryImage) =
 
 let private modalImage (img: GalleryImage) =
     Bulma.card [
-
         Bulma.cardImage [
             Bulma.image [
                 Html.img [
@@ -66,12 +68,4 @@ let modal (img: GalleryImage) (onClose: unit -> unit) : ReactElement =
     ]
 
 let view (onClick: GalleryImage -> unit) =
-    let galleryChunks =
-        List.splitInto 3 WebData.galleryImages
-
-    let verticalTile galleryImages =
-        Bulma.column (List.map (galleryImage onClick) galleryImages)
-
-    Bulma.columns [
-        prop.children (List.map verticalTile galleryChunks)
-    ]
+    FloatingGrid.inColumns 3 (List.map (galleryImage onClick) WebData.galleryImages)

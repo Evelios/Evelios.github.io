@@ -42,32 +42,17 @@ let private card (demo: InteractiveDemo) : ReactElement =
             Bulma.content demo.Description
         ]
 
-    Bulma.tile [
-        tile.isParent
-        tile.is3
+    Html.a [
+        prop.href demo.Link
+        prop.target "_blank"
+        prop.rel "noopener noreferrer"
         prop.children [
-            Html.a [
-                prop.href demo.Link
-                prop.target "_blank"
-                prop.rel "noopener noreferrer"
-                prop.children [
-                    Bulma.card [
-                        prop.children [ image; content ]
-                    ]
-                ]
+            Bulma.card [
+                prop.style [ style.maxWidth 500; style.margin.auto ]
+                prop.children [ image; content ]
             ]
         ]
     ]
 
 let view: ReactElement =
-    let interactiveWorks =
-        List.map card WebData.interactiveWorks
-
-    Bulma.tile [
-        tile.isAncestor
-        prop.style [
-            style.display.flex
-            style.flexWrap.wrap
-        ]
-        prop.children interactiveWorks
-    ]
+    FloatingGrid.inColumns 4 (List.map card WebData.interactiveWorks)
