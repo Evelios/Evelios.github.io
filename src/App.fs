@@ -38,17 +38,15 @@ let bodySection (name: string) (content: ReactElement) : ReactElement =
     Bulma.section [ title; content ]
 
 let footer: ReactElement =
-    let text: string =
+    let copyright: string =
         "© "
         + string DateTime.Now.Year
         + " Thomas G. Waters, All Rights Reserved"
 
     Bulma.footer [
-        Bulma.content [
-            Bulma.text.p [
-                Bulma.text.hasTextCentered
-                prop.text text
-            ]
+        text.hasTextCentered
+        prop.children [
+            Bulma.text.p copyright
         ]
     ]
 
