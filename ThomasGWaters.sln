@@ -13,15 +13,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionFiles", "SolutionFi
 		package-lock.json = package-lock.json
 		README.md = README.md
 		webpack.config.js = webpack.config.js
-		.github\workflows\fable.yaml = .github\workflows\fable.yaml
 		.github\workflows\fable.yml = .github\workflows\fable.yml
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dist", "dist", "{9399416A-20C5-4F41-B0A7-2D8F73B93334}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dist", "dist", "{77BC4132-6582-43CB-A309-26D2D0B3F23D}"
 	ProjectSection(SolutionItems) = preProject
-		dist\fable.ico = dist\fable.ico
 		dist\index.html = dist\index.html
-		dist\main.css = dist\main.css
 	EndProjectSection
 EndProject
 Global

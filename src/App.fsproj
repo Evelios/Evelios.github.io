@@ -3,6 +3,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="main.sass" />
     <Compile Include="Types.fs" />
     <Compile Include="WebData.fs" />
     <Compile Include="Icon.fs" />
