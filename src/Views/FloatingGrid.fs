@@ -19,12 +19,12 @@ let inColumns (count: int) (content: ReactElement list) : ReactElement =
 let inGrid (count: int) (content: ReactElement list) : ReactElement =
     let size =
         match count with
-        | 1 -> tile.is12
-        | 2 -> tile.is6
-        | 3 -> tile.is4
-        | 4 -> tile.is3
-        | 6 -> tile.is2
-        | 12 -> tile.is1
+        | 1 -> column.is12
+        | 2 -> column.is6
+        | 3 -> column.is4
+        | 4 -> column.is3
+        | 6 -> column.is2
+        | 12 -> column.is1
         | _ ->
             failwith (
                 "FloatingGrid doesn't support a grid size of "
@@ -33,24 +33,21 @@ let inGrid (count: int) (content: ReactElement list) : ReactElement =
             )
 
 
-    let columns: ReactElement list list =
-        List.splitInto count content
+    let chunkedColumns: ReactElement list list =
+        List.chunkBySize count content
 
     let singleTile (e: ReactElement) =
-        Bulma.tile [
-            tile.isChild
+        Bulma.column [
+            size
             prop.children [ e ]
         ]
 
     let verticalTile (subElements: ReactElement list) =
-        Bulma.tile [
-            tile.isParent
-            tile.isVertical
-            size
+        Bulma.columns [
+            columns.isCentered
             prop.children (List.map singleTile subElements)
         ]
 
-    Bulma.tile [
-        tile.isAncestor
-        prop.children (List.map verticalTile columns)
+    Html.div [
+        prop.children (List.map verticalTile chunkedColumns)
     ]

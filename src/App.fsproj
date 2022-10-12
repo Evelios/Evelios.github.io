@@ -8,6 +8,7 @@
     <Compile Include="WebData.fs" />
     <Compile Include="Icon.fs" />
     <Compile Include="Route.fs" />
+    <Compile Include="Responsive.fs" />
     <Compile Include="Views\FloatingGrid.fs" />
     <Compile Include="Views\Menu.fs" />
     <Compile Include="Views\InteractiveDemos.fs" />

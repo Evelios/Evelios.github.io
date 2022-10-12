@@ -9,18 +9,24 @@ open Feliz.Bulma
 open App
 open App.Views
 
-type State = { GalleryImage: GalleryImage option }
+type State =
+    { GalleryImage: GalleryImage option
+      Size: Responsive.Device }
 
 type Msg =
     | SelectGalleryImage of GalleryImage
     | CloseGalleryImage
+    | BrowserResize of Responsive.Device
 
-let init () = { GalleryImage = None }
+let init () : State =
+    { GalleryImage = None
+      Size = Responsive.device () }
 
 let update (msg: Msg) (state: State) : State =
     match msg with
     | SelectGalleryImage galleryImage -> { state with GalleryImage = Some galleryImage }
     | CloseGalleryImage -> { state with GalleryImage = None }
+    | BrowserResize size -> { state with Size = size }
 
 
 
@@ -45,9 +51,7 @@ let footer: ReactElement =
 
     Bulma.footer [
         text.hasTextCentered
-        prop.children [
-            Bulma.text.p copyright
-        ]
+        prop.children [ Bulma.text.p copyright ]
     ]
 
 let view (state: State) (dispatch: Msg -> unit) : ReactElement =
@@ -55,9 +59,9 @@ let view (state: State) (dispatch: Msg -> unit) : ReactElement =
 
     let body =
         Html.div [
-            bodySection "Interactive Demos" InteractiveDemos.view
+            bodySection "Interactive Demos" (InteractiveDemos.view state.Size)
             divider
-            bodySection "Gallery Images" (Gallery.view (SelectGalleryImage >> dispatch))
+            bodySection "Gallery Images" (Gallery.view state.Size (SelectGalleryImage >> dispatch))
         ]
 
     let modal =
@@ -67,11 +71,12 @@ let view (state: State) (dispatch: Msg -> unit) : ReactElement =
 
     Html.div [
         yield! modal
-        Bulma.container [ Menu.view; body ]
+        Bulma.container [ Menu.view (); body ]
         footer
     ]
 
 
 Program.mkSimple init update view
+|> Program.withSubscription (Responsive.subscribe BrowserResize)
 |> Program.withReactSynchronous "App"
 |> Program.run

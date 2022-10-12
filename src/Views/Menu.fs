@@ -76,7 +76,7 @@ let private burger =
         navbarBurger.isActive
     ]
 
-let view: ReactElement =
+let view (): ReactElement =
     Bulma.navbarMenu [
             Bulma.navbarBrand.div [
                 prop.children [

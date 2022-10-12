@@ -67,5 +67,11 @@ let modal (img: GalleryImage) (onClose: unit -> unit) : ReactElement =
         ]
     ]
 
-let view (onClick: GalleryImage -> unit) =
-    FloatingGrid.inColumns 3 (List.map (galleryImage onClick) WebData.galleryImages)
+let view (browserSize: Responsive.Device) (onClick: GalleryImage -> unit) =
+    let columns =
+        match browserSize with
+        | Responsive.Mobile -> 1
+        | Responsive.Tablet -> 2
+        | Responsive.Desktop -> 3
+        
+    FloatingGrid.inColumns columns (List.map (galleryImage onClick) WebData.galleryImages)

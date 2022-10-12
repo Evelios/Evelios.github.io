@@ -48,11 +48,20 @@ let private card (demo: InteractiveDemo) : ReactElement =
         prop.rel "noopener noreferrer"
         prop.children [
             Bulma.card [
-                prop.style [ style.maxWidth 500; style.margin.auto ]
+                prop.style [
+                    style.maxWidth 500
+                    style.margin.auto
+                ]
                 prop.children [ image; content ]
             ]
         ]
     ]
 
-let view: ReactElement =
-    FloatingGrid.inGrid 4 (List.map card WebData.interactiveWorks)
+let view (browserSize: Responsive.Device) : ReactElement =
+    let columns =
+        match browserSize with
+        | Responsive.Mobile -> 1
+        | Responsive.Tablet -> 3
+        | Responsive.Desktop -> 4
+
+    FloatingGrid.inGrid columns (List.map card WebData.interactiveWorks)
