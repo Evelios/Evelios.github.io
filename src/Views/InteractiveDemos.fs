@@ -55,4 +55,4 @@ let private card (demo: InteractiveDemo) : ReactElement =
     ]
 
 let view: ReactElement =
-    FloatingGrid.inColumns 4 (List.map card WebData.interactiveWorks)
+    FloatingGrid.inGrid 4 (List.map card WebData.interactiveWorks)
