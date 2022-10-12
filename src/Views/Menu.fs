@@ -40,7 +40,7 @@ let private projects =
     ]
 
 let private packages =
-    let projects =
+    let packages =
         List.map navbarLink WebData.packages
 
     Bulma.navbarItem.div [
@@ -50,7 +50,7 @@ let private packages =
             Bulma.navbarLink.a [
                 prop.text "Packages"
             ]
-            Bulma.navbarDropdown.div projects
+            Bulma.navbarDropdown.div packages
         ]
     ]
 
@@ -69,16 +69,24 @@ let private about =
         prop.target "_blank"
         prop.rel "noopener noreferrer"
     ]
+    
+let private burger =
+    Bulma.navbarBurger [
+        prop.role "button"
+        navbarBurger.isActive
+    ]
 
 let view: ReactElement =
     Bulma.navbarMenu [
-        Bulma.color.isPrimary
-        prop.children [
+            Bulma.navbarBrand.div [
+                prop.children [
+                    title
+                    burger
+                ]
+            ]
             Bulma.navbarStart.div [
-                title
                 projects
                 packages
             ]
             Bulma.navbarEnd.div [ github; about ]
-        ]
     ]
