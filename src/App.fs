@@ -18,7 +18,7 @@ type Msg =
     | CloseGalleryImage
     | BrowserResize of Responsive.Device
 
-let init () : State =
+let init () : State = 
     { GalleryImage = None
       Size = Responsive.device () }
 
@@ -75,8 +75,7 @@ let view (state: State) (dispatch: Msg -> unit) : ReactElement =
         footer
     ]
 
-
 Program.mkSimple init update view
-|> Program.withSubscription (Responsive.subscribe BrowserResize)
+// |> Program.withSubscription (Responsive.subscribe BrowserResize)
 |> Program.withReactSynchronous "App"
 |> Program.run

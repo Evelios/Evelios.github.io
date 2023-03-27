@@ -4,6 +4,7 @@ open Feliz
 open Feliz.Bulma
 
 open App
+open App.Views.FloatingGrid
 
 let private galleryImage (onClick: GalleryImage -> unit) (img: GalleryImage) =
     Bulma.box [

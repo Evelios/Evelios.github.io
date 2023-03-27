@@ -203,3 +203,4 @@ project.lock.json
 main.js
 main.css
 *.map
+*.fs.js

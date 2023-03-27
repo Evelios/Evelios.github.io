@@ -46,4 +46,4 @@ let subscribe (msg: Device -> 'Msg) (_: 'State) : Cmd<'Msg> =
         let response _ = device () |> msg |> dispatch
         window.onresize <- response
 
-    Cmd.ofSub sub
+    Cmd.ofEffect sub

@@ -1,22 +1,18 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30114.105
-MinimumVisualStudioVersion = 10.0.40219.1
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "App", "src\App.fsproj", "{93AE29C6-085A-444F-A143-89FA83EDCA8E}"
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "App", "src\App.fsproj", "{DA74D3CC-8737-47B5-B9F5-108772992B6E}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionFiles", "SolutionFiles", "{11873EA4-5C4B-4CEC-B1C8-37073C4786F8}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Project Files", "Project Files", "{737EBAC3-E45A-4887-B9A8-1EA4A159AF6E}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+		global.json = global.json
 		Nuget.Config = Nuget.Config
 		package.json = package.json
-		package-lock.json = package-lock.json
 		README.md = README.md
 		webpack.config.js = webpack.config.js
-		.github\workflows\fable.yml = .github\workflows\fable.yml
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dist", "dist", "{77BC4132-6582-43CB-A309-26D2D0B3F23D}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dist", "dist", "{C116B2A2-5FE3-4E49-8CEB-D2FE2E8E8976}"
 	ProjectSection(SolutionItems) = preProject
 		dist\index.html = dist\index.html
 	EndProjectSection
@@ -24,27 +20,10 @@ EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
-		Debug|x64 = Debug|x64
-		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
-		Release|x64 = Release|x64
-		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{93AE29C6-085A-444F-A143-89FA83EDCA8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{93AE29C6-085A-444F-A143-89FA83EDCA8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{93AE29C6-085A-444F-A143-89FA83EDCA8E}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{93AE29C6-085A-444F-A143-89FA83EDCA8E}.Debug|x64.Build.0 = Debug|Any CPU
-		{93AE29C6-085A-444F-A143-89FA83EDCA8E}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{93AE29C6-085A-444F-A143-89FA83EDCA8E}.Debug|x86.Build.0 = Debug|Any CPU
-		{93AE29C6-085A-444F-A143-89FA83EDCA8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{93AE29C6-085A-444F-A143-89FA83EDCA8E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{93AE29C6-085A-444F-A143-89FA83EDCA8E}.Release|x64.ActiveCfg = Release|Any CPU
-		{93AE29C6-085A-444F-A143-89FA83EDCA8E}.Release|x64.Build.0 = Release|Any CPU
-		{93AE29C6-085A-444F-A143-89FA83EDCA8E}.Release|x86.ActiveCfg = Release|Any CPU
-		{93AE29C6-085A-444F-A143-89FA83EDCA8E}.Release|x86.Build.0 = Release|Any CPU
+		{DA74D3CC-8737-47B5-B9F5-108772992B6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA74D3CC-8737-47B5-B9F5-108772992B6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 EndGlobal
