@@ -10,6 +10,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Project Files", "Project Fi
 		package.json = package.json
 		README.md = README.md
 		webpack.config.js = webpack.config.js
+		.github\workflows\fable.yml = .github\workflows\fable.yml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dist", "dist", "{C116B2A2-5FE3-4E49-8CEB-D2FE2E8E8976}"
