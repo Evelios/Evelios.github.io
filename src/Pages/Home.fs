@@ -7,7 +7,7 @@ open Feliz.Bulma
 open App
 open App.Views
 
-type State =
+type Model =
     { GalleryImage: GalleryImage option
       Size: Responsive.Device }
 
@@ -16,15 +16,15 @@ type Msg =
     | CloseGalleryImage
     | BrowserResize of Responsive.Device
 
-let init () : State =
+let init () : Model =
     { GalleryImage = None
       Size = Responsive.device () }
 
-let update (msg: Msg) (state: State) : State =
+let update (msg: Msg) (model: Model) : Model =
     match msg with
-    | SelectGalleryImage galleryImage -> { state with GalleryImage = Some galleryImage }
-    | CloseGalleryImage -> { state with GalleryImage = None }
-    | BrowserResize size -> { state with Size = size }
+    | SelectGalleryImage galleryImage -> { model with GalleryImage = Some galleryImage }
+    | CloseGalleryImage -> { model with GalleryImage = None }
+    | BrowserResize size -> { model with Size = size }
 
 let bodySection (name: string) (content: ReactElement) : ReactElement =
     let title = Bulma.title [ title.is1; prop.text name; text.hasTextCentered ]
@@ -38,17 +38,17 @@ let footer: ReactElement =
     Bulma.footer [ text.hasTextCentered; prop.children [ Bulma.text.p copyright ] ]
 
 
-let view (state: State) (dispatch: Msg -> unit) : ReactElement =
+let view (model: Model) (dispatch: Msg -> unit) : ReactElement =
     let divider = Bulma.navbarDivider []
 
     let body =
         Html.div
-            [ bodySection "Gallery Images" (Gallery.view state.Size (SelectGalleryImage >> dispatch))
+            [ bodySection "Gallery Images" (Gallery.view model.Size (SelectGalleryImage >> dispatch))
               divider
-              bodySection "Interactive Demos" (InteractiveDemos.view state.Size) ]
+              bodySection "Interactive Demos" (InteractiveDemos.view model.Size) ]
 
     let modal =
-        state.GalleryImage
+        model.GalleryImage
         |> Option.map (fun img -> Gallery.modal img (fun _ -> dispatch CloseGalleryImage))
         |> Option.toList
 

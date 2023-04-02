@@ -59,5 +59,5 @@ let subscribe (msg: Device -> 'Msg) : Subscribe<'Msg> = subscription msg
 /// Subscribe to browser resize events to get the current browser size.
 /// This helps with responsive design because you get the current device
 /// that the application is running on
-let onBrowserResize (msg: Device -> 'Msg) (_: 'State) : Sub<'Msg> =
+let onBrowserResize (msg: Device -> 'Msg) (_: 'Model) : Sub<'Msg> =
     [ [ "browser-resize" ], subscription msg ]

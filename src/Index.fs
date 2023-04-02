@@ -15,11 +15,11 @@ open App.Router
 
 [<RequireQualifiedAccess>]
 type Page =
-    | Home of Home.State
+    | Home of Home.Model
     | NotFound
 
 
-type State =
+type Model =
     { ActivePage: Page
       CurrentRoute: Route option
       Device: Responsive.Device }
@@ -45,26 +45,26 @@ let rec setRoute (optRoute: Route option) model =
 
             { model with ActivePage = Page.Home homeModel }, navigate
 
-let init (location: Route option) : State * Cmd<Msg> =
+let init (location: Route option) : Model * Cmd<Msg> =
     setRoute
         location
         { ActivePage = Home.init () |> Page.Home
           CurrentRoute = None
           Device = Responsive.device () }
 
-let update (msg: Msg) (state: State) : State * Cmd<Msg> =
-    match state.ActivePage, msg with
-    | _, BrowserResize newDevice -> { state with Device = newDevice }, Cmd.none
-    | Page.NotFound, _ -> state, Cmd.none
+let update (msg: Msg) (model: Model) : Model * Cmd<Msg> =
+    match model.ActivePage, msg with
+    | _, BrowserResize newDevice -> { model with Device = newDevice }, Cmd.none
+    | Page.NotFound, _ -> model, Cmd.none
 
-    | Page.Home homeState, HomeMsg homeMsg ->
-        let newHomeState = Home.update homeMsg homeState
-        { state with ActivePage = Page.Home newHomeState }, Cmd.none
+    | Page.Home homeModel, HomeMsg homeMsg ->
+        let newHomeModel = Home.update homeMsg homeModel
+        { model with ActivePage = Page.Home newHomeModel }, Cmd.none
 
 
 // ---- Views ------------------------------------------------------------------
 
-let view (state: State) (dispatch: Msg -> unit) =
-    match state.ActivePage with
-    | Page.Home homeState -> Home.view homeState (HomeMsg >> dispatch)
+let view (model: Model) (dispatch: Msg -> unit) =
+    match model.ActivePage with
+    | Page.Home homeModel -> Home.view homeModel (HomeMsg >> dispatch)
     | Page.NotFound -> NotFound.view ()
