@@ -4,13 +4,14 @@ open Feliz
 open Feliz.Bulma
 
 open App
+open App.Router
 
 let private title =
     Bulma.navbarItem.a [
-        prop.href Route.home
+        prop.href Router.home
         prop.children [
             Bulma.title [
-                title.is6
+                title.is4
                 prop.text "Thomas G. Waters"
             ]
         ]
@@ -53,6 +54,21 @@ let private packages =
             Bulma.navbarDropdown.div packages
         ]
     ]
+    
+let private commissions =
+    let commissions =
+        List.map navbarLink WebData.commissions
+
+    Bulma.navbarItem.div [
+        navbarItem.hasDropdown
+        navbarItem.isHoverable
+        prop.children [
+            Bulma.navbarLink.a [
+                prop.text "Commissions"
+            ]
+            Bulma.navbarDropdown.div commissions
+        ]
+    ]
 
 let private github =
     Bulma.navbarItem.a [
@@ -87,6 +103,7 @@ let view (): ReactElement =
             Bulma.navbarStart.div [
                 projects
                 packages
+                commissions
             ]
             Bulma.navbarEnd.div [ github; about ]
     ]

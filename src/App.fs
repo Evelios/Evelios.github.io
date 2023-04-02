@@ -1,81 +1,30 @@
 module App
 
-open System
 open Elmish
 open Elmish.React
-open Feliz
-open Feliz.Bulma
+open Elmish.Navigation
+
+#if DEBUG
+open Elmish.Debug
+open Elmish.HMR
+#endif
 
 open App
-open App.Views
+open App.Router
+open App.Responsive
 
-type State =
-    { GalleryImage: GalleryImage option
-      Size: Responsive.Device }
+Program.mkProgram Index.init Index.update Index.view
+|> Program.withSubscription (Responsive.onBrowserResize Index.BrowserResize)
 
-type Msg =
-    | SelectGalleryImage of GalleryImage
-    | CloseGalleryImage
-    | BrowserResize of Responsive.Device
+#if DEBUG
+|> Program.withConsoleTrace
+#endif
 
-let init () : State = 
-    { GalleryImage = None
-      Size = Responsive.device () }
-
-let update (msg: Msg) (state: State) : State =
-    match msg with
-    | SelectGalleryImage galleryImage -> { state with GalleryImage = Some galleryImage }
-    | CloseGalleryImage -> { state with GalleryImage = None }
-    | BrowserResize size -> { state with Size = size }
-
-
-
-// ---- Views ------------------------------------------------------------------
-
-
-let bodySection (name: string) (content: ReactElement) : ReactElement =
-    let title =
-        Bulma.title [
-            title.is1
-            prop.text name
-            text.hasTextCentered
-        ]
-
-    Bulma.section [ title; content ]
-
-let footer: ReactElement =
-    let copyright: string =
-        "© "
-        + string DateTime.Now.Year
-        + " Thomas G. Waters, All Rights Reserved"
-
-    Bulma.footer [
-        text.hasTextCentered
-        prop.children [ Bulma.text.p copyright ]
-    ]
-
-let view (state: State) (dispatch: Msg -> unit) : ReactElement =
-    let divider = Bulma.navbarDivider []
-
-    let body =
-        Html.div [
-            bodySection "Interactive Demos" (InteractiveDemos.view state.Size)
-            divider
-            bodySection "Gallery Images" (Gallery.view state.Size (SelectGalleryImage >> dispatch))
-        ]
-
-    let modal =
-        state.GalleryImage
-        |> Option.map (fun img -> Gallery.modal img (fun _ -> dispatch CloseGalleryImage))
-        |> Option.toList
-
-    Html.div [
-        yield! modal
-        Bulma.container [ Menu.view (); body ]
-        footer
-    ]
-
-Program.mkSimple init update view
-// |> Program.withSubscription (Responsive.subscribe BrowserResize)
+|> Program.toNavigable (UrlParser.parseHash Router.routeParser) Index.setRoute
 |> Program.withReactSynchronous "App"
+
+#if DEBUG
+|> Program.withDebugger
+#endif
+
 |> Program.run

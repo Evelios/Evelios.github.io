@@ -4,7 +4,7 @@ open Feliz
 open Feliz.Bulma
 
 open App
-open App.Views.FloatingGrid
+open App.Router
 
 let private galleryImage (onClick: GalleryImage -> unit) (img: GalleryImage) =
     Bulma.box [
@@ -19,7 +19,7 @@ let private galleryImage (onClick: GalleryImage -> unit) (img: GalleryImage) =
                 Bulma.image [
                     Html.img [
                         prop.style [ style.cursor.pointer ]
-                        prop.src (Route.Image.gallery img.Source)
+                        prop.src (Router.Image.gallery img.Source)
                     ]
                 ]
             ]
@@ -31,7 +31,7 @@ let private modalImage (img: GalleryImage) =
         Bulma.cardImage [
             Bulma.image [
                 Html.img [
-                    prop.src (Route.Image.gallery img.Source)
+                    prop.src (Router.Image.gallery img.Source)
                 ]
             ]
         ]

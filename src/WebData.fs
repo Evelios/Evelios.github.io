@@ -1,22 +1,27 @@
 module App.WebData
 
+open Feliz.Bulma.ElementBuilders
+
 module Links =
     let github = "https://github.com/evelios"
     
     let about = "https://generatorvt.com/tommy-waters/"
 
 
-
 /// Projects that I have worked on
 let projects =
-    [ { Title = "Pretty Rough Shape"
-        Source = "https://prettyroughshape.com" } ]
+    [ { Title = "Unity - Easy Target Package"
+        Source = "https://assetstore.unity.com/packages/add-ons/easy-target-233502" } ]
 
 let packages =
     [ { Title = "F# - Math.Units"
         Source = "https://www.nuget.org/packages/Math.Units" }
       { Title = "F# - Math.Geometry"
         Source = "https://www.nuget.org/packages/Math.Geometry" } ]
+    
+let commissions =
+    [ { Title = "Pretty Rough Shape"
+        Source = "https://prettyroughshape.com" } ]
 
 /// Images that are available in the gallery.
 let galleryImages: GalleryImage list =

@@ -4,6 +4,7 @@ open Feliz
 open Feliz.Bulma
 
 open App
+open App.Router
 
 
 let private card (demo: InteractiveDemo) : ReactElement =
@@ -13,7 +14,7 @@ let private card (demo: InteractiveDemo) : ReactElement =
             prop.children [
                 Html.img [
                     prop.alt demo.Description
-                    prop.src (Route.Image.interactive demo.Image)
+                    prop.src (Router.Image.interactive demo.Image)
                 ]
                 Html.img [
                     prop.className "interactive-background"
@@ -24,7 +25,7 @@ let private card (demo: InteractiveDemo) : ReactElement =
                         style.left 0
                     ]
                     prop.alt demo.Description
-                    prop.src (Route.Image.interactive demo.HoverImage)
+                    prop.src (Router.Image.interactive demo.HoverImage)
                 ]
             ]
         ]
