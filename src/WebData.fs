@@ -4,8 +4,10 @@ open Feliz.Bulma.ElementBuilders
 
 module Links =
     let github = "https://github.com/evelios"
-    
+
     let about = "https://generatorvt.com/tommy-waters/"
+    
+    let shop = "https://www.calmwatersdesign.com/"
 
 
 /// Projects that I have worked on
@@ -15,10 +17,12 @@ let projects =
 
 let packages =
     [ { Title = "F# - Math.Units"
-        Source = "https://www.nuget.org/packages/Math.Units" }
+        Source = "https://thomasgwaters.com/Math.Units/" }
       { Title = "F# - Math.Geometry"
-        Source = "https://www.nuget.org/packages/Math.Geometry" } ]
-    
+        Source = "https://thomasgwaters.com/Math.Geometry/" }
+      { Title = "Unity - Easy Target Package"
+        Source = "https://assetstore.unity.com/packages/add-ons/easy-target-233502" } ]
+
 let commissions =
     [ { Title = "Pretty Rough Shape"
         Source = "https://prettyroughshape.com" } ]

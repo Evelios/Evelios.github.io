@@ -11,7 +11,6 @@ open Elmish.HMR
 
 open App
 open App.Router
-open App.Responsive
 
 Program.mkProgram Index.init Index.update Index.view
 |> Program.withSubscription (Responsive.onBrowserResize Index.BrowserResize)

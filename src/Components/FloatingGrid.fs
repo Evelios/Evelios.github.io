@@ -1,4 +1,4 @@
-module App.Views.FloatingGrid
+module App.Components.FloatingGrid
 
 open Feliz
 open Feliz.Bulma

@@ -4,10 +4,14 @@
 
 module App.Index
 
+open System
 open Elmish
+open Feliz
+open Feliz.Bulma
 
 open App
 open App.Pages
+open App.Views
 open App.Router
 
 
@@ -15,18 +19,22 @@ open App.Router
 
 [<RequireQualifiedAccess>]
 type Page =
-    | Home of Home.Model
+    | Home
+    | Gallery
+    | Demos
     | NotFound
 
 
 type Model =
     { ActivePage: Page
       CurrentRoute: Route option
-      Device: Responsive.Device }
+      Device: Responsive.Device
+      SelectedImage: GalleryImage option }
 
 type Msg =
-    | HomeMsg of Home.Msg
     | BrowserResize of Responsive.Device
+    | SelectedGalleryImage of GalleryImage
+    | CloseGalleryModal
 
 
 // ---- Data Handling ----------------------------------------------------------
@@ -39,32 +47,44 @@ let rec setRoute (optRoute: Route option) model =
     | None -> { model with ActivePage = Page.NotFound }, Cmd.none
     | Some route ->
         match route with
-
-        | Route.Home ->
-            let homeModel = Home.init ()
-
-            { model with ActivePage = Page.Home homeModel }, navigate
+        | Route.Home -> { model with ActivePage = Page.Home }, navigate
+        | Route.Gallery -> { model with ActivePage = Page.Gallery }, navigate
+        | Route.Demos -> { model with ActivePage = Page.Demos }, navigate
 
 let init (location: Route option) : Model * Cmd<Msg> =
     setRoute
         location
-        { ActivePage = Home.init () |> Page.Home
+        { ActivePage = Page.Home
           CurrentRoute = None
-          Device = Responsive.device () }
+          Device = Responsive.device ()
+          SelectedImage = None }
 
 let update (msg: Msg) (model: Model) : Model * Cmd<Msg> =
-    match model.ActivePage, msg with
-    | _, BrowserResize newDevice -> { model with Device = newDevice }, Cmd.none
-    | Page.NotFound, _ -> model, Cmd.none
+    match msg with
+    | BrowserResize newDevice -> { model with Device = newDevice }, Cmd.none
+    | SelectedGalleryImage galleryImage -> { model with SelectedImage = Some galleryImage }, Cmd.none
+    | CloseGalleryModal -> { model with SelectedImage = None }, Cmd.none
 
-    | Page.Home homeModel, HomeMsg homeMsg ->
-        let newHomeModel = Home.update homeMsg homeModel
-        { model with ActivePage = Page.Home newHomeModel }, Cmd.none
 
 
 // ---- Views ------------------------------------------------------------------
 
+let footer: ReactElement =
+    let copyright: string =
+        "© " + string DateTime.Now.Year + " Thomas G. Waters, All Rights Reserved"
+
+    Bulma.footer [ text.hasTextCentered; prop.children [ Bulma.text.p copyright ] ]
+
 let view (model: Model) (dispatch: Msg -> unit) =
-    match model.ActivePage with
-    | Page.Home homeModel -> Home.view homeModel (HomeMsg >> dispatch)
-    | Page.NotFound -> NotFound.view ()
+    let body =
+        match model.ActivePage with
+        | Page.Home -> Home.view model.Device (SelectedGalleryImage >> dispatch)
+        | Page.Gallery -> Gallery.view model.Device (SelectedGalleryImage >> dispatch)
+        | Page.Demos -> Demos.view model.Device
+        | Page.NotFound -> NotFound.view ()
+
+    let modal: ReactElement option =
+        model.SelectedImage
+        |> Option.map (fun img -> Gallery.modal img (fun () -> dispatch CloseGalleryModal))
+
+    Html.div [ yield! (Option.toList modal); Bulma.container [ Menu.view (); body ]; footer ]

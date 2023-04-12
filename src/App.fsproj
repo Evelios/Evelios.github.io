@@ -9,10 +9,10 @@
     <Compile Include="Icon.fs" />
     <Compile Include="Router.fs" />
     <Compile Include="Responsive.fs" />
-    <Compile Include="Views\FloatingGrid.fs" />
+    <Compile Include="Components\FloatingGrid.fs" />
     <Compile Include="Views\Menu.fs" />
-    <Compile Include="Views\InteractiveDemos.fs" />
-    <Compile Include="Views\Gallery.fs" />
+    <Compile Include="Pages\Gallery.fs" />
+    <Compile Include="Pages\Demos.fs" />
     <Compile Include="Pages\Home.fs" />
     <Compile Include="Pages\NotFound.fs" />
     <Compile Include="Index.fs" />
