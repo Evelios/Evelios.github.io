@@ -1,4 +1,5 @@
-﻿module App.Pages.Demos
+﻿/// View all the interactive demos that I have created.
+module App.Pages.Demos
 
 open App
 open App.Router
@@ -9,6 +10,8 @@ open Feliz.Bulma
 open Fable.React
 
 
+/// A single demo card that includes a picture transition of the demo and a
+/// description of what that demo is.
 let private card (demo: InteractiveDemo) : ReactElement =
     let image =
         Bulma.cardImage
@@ -39,7 +42,9 @@ let private card (demo: InteractiveDemo) : ReactElement =
                     [ prop.style [ style.maxWidth 500; style.margin.auto ]
                       prop.children [ image; content ] ] ] ]
 
-let view (device: Responsive.Device) : ReactElement =
+/// A view of all the demos that have been created. This is a grid layout
+/// organizing the demos to be viewed.
+let demoGrid (device: Responsive.Device) : ReactElement =
     let columns =
         match device with
         | Responsive.Mobile -> 1
@@ -47,3 +52,7 @@ let view (device: Responsive.Device) : ReactElement =
         | Responsive.Desktop -> 4
 
     FloatingGrid.inGrid columns (List.map card WebData.interactiveWorks)
+
+/// The interactive demos web page.
+let view (device: Responsive.Device) : ReactElement =
+    Body.section "Interactive Demos" (demoGrid device)
