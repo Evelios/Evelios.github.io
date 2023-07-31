@@ -1,6 +1,6 @@
 module App.WebData
 
-open Feliz.Bulma.ElementBuilders
+let title = "Thomas G. Waters"
 
 module Links =
     let github = "https://github.com/evelios"
@@ -10,11 +10,7 @@ module Links =
     let shop = "https://www.calmwatersdesign.com/"
 
 
-/// Projects that I have worked on
-let projects =
-    [ { Title = "Unity - Easy Target Package"
-        Source = "https://assetstore.unity.com/packages/add-ons/easy-target-233502" } ]
-
+/// Packages that I have published
 let packages =
     [ { Title = "F# - Math.Units"
         Source = "https://thomasgwaters.com/Math.Units/" }
@@ -23,8 +19,9 @@ let packages =
       { Title = "Unity - Easy Target Package"
         Source = "https://assetstore.unity.com/packages/add-ons/easy-target-233502" } ]
 
+/// Projects that I have been commissioned to work on
 let commissions =
-    [ { Title = "Pretty Rough Shape"
+    [ { Title = "Pretty Rough Shape - WebComic"
         Source = "https://prettyroughshape.com" } ]
 
 /// Images that are available in the gallery.

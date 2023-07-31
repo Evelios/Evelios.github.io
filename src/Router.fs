@@ -59,3 +59,5 @@ module Router =
 
     /// Map URI safe characters into human readable characters
     let mapCharacters (s: string) = s.Replace("%20", " ")
+
+    let isLocalLink (url: Url) = url.StartsWith("/#")
