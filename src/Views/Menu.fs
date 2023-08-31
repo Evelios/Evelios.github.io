@@ -21,10 +21,7 @@ let private navbarLink (project: Project) =
 
 let private projects =
     let packages = Bulma.menuList (List.map navbarLink WebData.packages)
-
     let commissions = Bulma.menuList (List.map navbarLink WebData.commissions)
-
-
 
     Bulma.navbarItem.div
         [ navbarItem.hasDropdown
@@ -32,28 +29,6 @@ let private projects =
           prop.children
               [ Bulma.navbarLink.a [ prop.text "Projects" ]
                 Bulma.navbarDropdown.div [ packages; Bulma.navbarDivider []; commissions ] ] ]
-
-
-
-let private packages =
-    let packages = List.map navbarLink WebData.packages
-
-    Bulma.navbarItem.div
-        [ navbarItem.hasDropdown
-          navbarItem.isHoverable
-          prop.children
-              [ Bulma.navbarLink.a [ prop.text "Packages" ]
-                Bulma.navbarDropdown.div packages ] ]
-
-let private commissions =
-    let commissions = List.map navbarLink WebData.commissions
-
-    Bulma.navbarItem.div
-        [ navbarItem.hasDropdown
-          navbarItem.isHoverable
-          prop.children
-              [ Bulma.navbarLink.a [ prop.text "Commissions" ]
-                Bulma.navbarDropdown.div commissions ] ]
 
 let private gallery =
     navbarLink
@@ -83,6 +58,5 @@ let private burger =
 let view () : ReactElement =
     Bulma.navbarMenu
         [ Bulma.navbarBrand.div [ prop.children [ title; burger ] ]
-          Bulma.navbarStart.div [ packages; commissions; shop ]
           Bulma.navbarStart.div [ gallery; demos; projects ]
           Bulma.navbarEnd.div [ github; about ] ]
