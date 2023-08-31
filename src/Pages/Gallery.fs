@@ -13,7 +13,6 @@ open App.Components
 let private galleryImage (onClick: GalleryImage -> unit) (img: GalleryImage) =
     Bulma.box
         [ prop.onClick (fun _ -> onClick img)
-          prop.className "gallery"
           prop.style [ style.padding 0; style.width.unset ]
           prop.children
               [ Bulma.cardImage

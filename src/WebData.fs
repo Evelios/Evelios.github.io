@@ -1,5 +1,6 @@
 module App.WebData
 
+let title = "Thomas G. Waters"
 
 module Links =
     let github = "https://github.com/evelios"
@@ -20,7 +21,7 @@ let packages =
 
 /// Commissioned projects that I want to show off
 let commissions =
-    [ { Title = "Pretty Rough Shape"
+    [ { Title = "Pretty Rough Shape - WebComic"
         Source = "https://prettyroughshape.com" } ]
 
 /// Images that are available in the gallery.
