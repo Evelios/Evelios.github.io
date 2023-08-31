@@ -20,11 +20,11 @@
     <Compile Include="App.fs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Elmish" Version="4.0.1" />
+    <PackageReference Include="Elmish" Version="4.0.2" />
     <PackageReference Include="Elmish.Navigation" Version="1.0.0" />
     <PackageReference Include="Fable.Browser.Dom" Version="2.14.0" />
     <PackageReference Include="Fable.Core" Version="4.0.0" />
-    <PackageReference Update="FSharp.Core" Version="7.0.300-beta.23127.2" />
+    <PackageReference Update="FSharp.Core" Version="7.0.300" />
     <PackageReference Include="Fable.Elmish.Browser" Version="4.0.1" />
     <PackageReference Include="Fable.Elmish.Debugger" Version="4.0.0" />
     <PackageReference Include="Fable.Elmish.HMR" Version="7.0.0" />

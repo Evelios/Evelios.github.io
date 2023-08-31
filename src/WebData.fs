@@ -1,6 +1,5 @@
 module App.WebData
 
-open Feliz.Bulma.ElementBuilders
 
 module Links =
     let github = "https://github.com/evelios"
@@ -10,11 +9,7 @@ module Links =
     let shop = "https://www.calmwatersdesign.com/"
 
 
-/// Projects that I have worked on
-let projects =
-    [ { Title = "Unity - Easy Target Package"
-        Source = "https://assetstore.unity.com/packages/add-ons/easy-target-233502" } ]
-
+/// Packages that I have developed
 let packages =
     [ { Title = "F# - Math.Units"
         Source = "https://thomasgwaters.com/Math.Units/" }
@@ -23,6 +18,7 @@ let packages =
       { Title = "Unity - Easy Target Package"
         Source = "https://assetstore.unity.com/packages/add-ons/easy-target-233502" } ]
 
+/// Commissioned projects that I want to show off
 let commissions =
     [ { Title = "Pretty Rough Shape"
         Source = "https://prettyroughshape.com" } ]
@@ -67,7 +63,7 @@ let interactiveWorks =
         Description = "Based on plate tectonics weather and erosion patterns"
         Image = "island_generator_foreground.png"
         HoverImage = "island_generator_background.png"
-        Link = "https://evelios.github.io/procIsland/" }
+        Link = "https://evelios.github.io/procedural-island/" }
 
       { Title = "Cellular Automata"
         Description = "Cellular automata using arbitrary grid patterns"

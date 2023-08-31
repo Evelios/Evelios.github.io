@@ -18,16 +18,6 @@ let private navbarLink (project: Project) =
           prop.target "_blank"
           prop.rel "noopener noreferrer" ]
 
-let private projects =
-    let projects = List.map navbarLink WebData.projects
-
-    Bulma.navbarItem.div
-        [ navbarItem.hasDropdown
-          navbarItem.isHoverable
-          prop.children
-              [ Bulma.navbarLink.a [ prop.text "Projects" ]
-                Bulma.navbarDropdown.div projects ] ]
-
 let private packages =
     let packages = List.map navbarLink WebData.packages
 
@@ -72,5 +62,5 @@ let private burger =
 let view () : ReactElement =
     Bulma.navbarMenu
         [ Bulma.navbarBrand.div [ prop.children [ title; burger ] ]
-          Bulma.navbarStart.div [ projects; packages; commissions; shop ]
+          Bulma.navbarStart.div [ packages; commissions; shop ]
           Bulma.navbarEnd.div [ github; about ] ]
