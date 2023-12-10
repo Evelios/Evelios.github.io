@@ -5,6 +5,7 @@ type Route =
     | Home
     | Gallery
     | Demos
+    | About
 
 /// The Router handles interactions with the URL to determine which pages need
 /// to be loaded.
@@ -24,6 +25,8 @@ module Router =
 
         let gallery (image: Image) : string = "/img/gallery/" + image
 
+        let homepage (image: Image) : string = "/img/homepage/" + image
+
     let home = "/"
 
 
@@ -39,6 +42,7 @@ module Router =
             | Route.Home -> ""
             | Route.Gallery -> "gallery"
             | Route.Demos -> "demos"
+            | Route.About -> "about"
 
         "/#" </> routeUri
 
@@ -55,7 +59,8 @@ module Router =
         oneOf
             [ map Route.Home top
               map Route.Gallery (s "gallery")
-              map Route.Demos (s "demos") ]
+              map Route.Demos (s "demos")
+              map Route.About (s "about") ]
 
     /// Map URI safe characters into human readable characters
     let mapCharacters (s: string) = s.Replace("%20", " ")

@@ -21,10 +21,7 @@ let private navbarLink (project: Project) =
 
 let private projects =
     let packages = Bulma.menuList (List.map navbarLink WebData.packages)
-
     let commissions = Bulma.menuList (List.map navbarLink WebData.commissions)
-
-
 
     Bulma.navbarItem.div
         [ navbarItem.hasDropdown
@@ -73,15 +70,31 @@ let private github =
           prop.rel "noopener noreferrer" ]
 
 let private about =
-    navbarLink
-        { Title = "About"
-          Source = WebData.Links.about }
+    let aboutMe =
+        navbarLink
+            { Title = "About Me"
+              Source = Router.toHash Route.About }
+
+    let generatorProfile =
+        navbarLink
+            { Title = "Generator Profile"
+              Source = WebData.Links.about }
+
+
+
+    Bulma.navbarItem.div
+        [ navbarItem.hasDropdown
+          navbarItem.isHoverable
+          prop.children
+              [ Bulma.navbarLink.a [ prop.text "About" ]
+                Bulma.navbarDropdown.div [ aboutMe; generatorProfile ] ] ]
 
 let private burger =
     Bulma.navbarBurger [ prop.role "button"; navbarBurger.isActive ]
 
 let view () : ReactElement =
-    Bulma.navbarMenu
-        [ Bulma.navbarBrand.div [ prop.children [ title; burger ] ]
-          Bulma.navbarStart.div [ gallery; demos; projects ]
-          Bulma.navbarEnd.div [ github; about ] ]
+    Bulma.container
+        [ Bulma.navbarMenu
+              [ Bulma.navbarBrand.div [ prop.children [ title; burger ] ]
+                Bulma.navbarStart.div [ gallery; demos; projects ]
+                Bulma.navbarEnd.div [ github; about ] ] ]

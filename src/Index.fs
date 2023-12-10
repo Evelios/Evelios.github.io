@@ -22,6 +22,7 @@ type Page =
     | Home
     | Gallery
     | Demos
+    | About of About.Model
     | NotFound
 
 
@@ -44,12 +45,19 @@ let rec setRoute (optRoute: Route option) model =
     let navigate = Router.navigateTo optRoute
 
     match optRoute with
-    | None -> { model with ActivePage = Page.NotFound }, Cmd.none
+    | None ->
+        { model with
+            ActivePage = Page.NotFound },
+        Cmd.none
     | Some route ->
         match route with
         | Route.Home -> { model with ActivePage = Page.Home }, navigate
         | Route.Gallery -> { model with ActivePage = Page.Gallery }, navigate
         | Route.Demos -> { model with ActivePage = Page.Demos }, navigate
+        | Route.About ->
+            { model with
+                ActivePage = Page.About <| About.init () },
+            navigate
 
 let init (location: Route option) : Model * Cmd<Msg> =
     setRoute
@@ -62,7 +70,10 @@ let init (location: Route option) : Model * Cmd<Msg> =
 let update (msg: Msg) (model: Model) : Model * Cmd<Msg> =
     match msg with
     | BrowserResize newDevice -> { model with Device = newDevice }, Cmd.none
-    | SelectedGalleryImage galleryImage -> { model with SelectedImage = Some galleryImage }, Cmd.none
+    | SelectedGalleryImage galleryImage ->
+        { model with
+            SelectedImage = Some galleryImage },
+        Cmd.none
     | CloseGalleryModal -> { model with SelectedImage = None }, Cmd.none
 
 
@@ -81,10 +92,11 @@ let view (model: Model) (dispatch: Msg -> unit) =
         | Page.Home -> Home.view model.Device (SelectedGalleryImage >> dispatch)
         | Page.Gallery -> Gallery.view model.Device (SelectedGalleryImage >> dispatch)
         | Page.Demos -> Demos.view model.Device
+        | Page.About aboutModel -> About.view aboutModel
         | Page.NotFound -> NotFound.view ()
 
     let modal: ReactElement option =
         model.SelectedImage
         |> Option.map (fun img -> Gallery.modal img (fun () -> dispatch CloseGalleryModal))
 
-    Html.div [ yield! (Option.toList modal); Bulma.container [ Menu.view (); body ]; footer ]
+    Html.div [ yield! (Option.toList modal); Menu.view (); body; footer ]

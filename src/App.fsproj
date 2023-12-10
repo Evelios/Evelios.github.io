@@ -11,11 +11,13 @@
     <Compile Include="Responsive.fs" />
     <Compile Include="Components\FloatingGrid.fs" />
     <Compile Include="Components\Body.fs" />
+    <Compile Include="Components\MarkdownPage.fs" />
     <Compile Include="Views\Menu.fs" />
     <Compile Include="Pages\Gallery.fs" />
     <Compile Include="Pages\Demos.fs" />
     <Compile Include="Pages\Home.fs" />
     <Compile Include="Pages\NotFound.fs" />
+    <Compile Include="Pages\About.fs" />
     <Compile Include="Index.fs" />
     <Compile Include="App.fs" />
   </ItemGroup>
@@ -29,7 +31,9 @@
     <PackageReference Include="Fable.Elmish.Debugger" Version="4.0.0" />
     <PackageReference Include="Fable.Elmish.HMR" Version="7.0.0" />
     <PackageReference Include="Fable.Elmish.React" Version="4.0.0" />
+    <PackageReference Include="Fable.Formatting.Markdown" Version="1.0.1" />
     <PackageReference Include="Feliz" Version="2.6.0" />
     <PackageReference Include="Feliz.Bulma" Version="3.0.0" />
+    <PackageReference Include="FSharp.Formatting" Version="18.1.1" />
   </ItemGroup>
 </Project>
